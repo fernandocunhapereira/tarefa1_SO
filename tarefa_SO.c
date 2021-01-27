@@ -56,7 +56,7 @@ int main(){
 			time(&fim3);
 			tempo=tempo+difftime(fim3,inicio3);
 			time(&t);
-			printf("O neto 1 morreu em %s, e viveu %.0f anos\n", ctime(&t), difftime(fim3,inicio3));
+			printf("O neto 1 morreu em %s, e viveu %.0f anos\n\n", ctime(&t), difftime(fim3,inicio3));
 			exit(0);
 		}
 		sleep(18);
@@ -64,7 +64,7 @@ int main(){
 		time(&fim1);
 		tempo=difftime(fim1,inicio);
 		time(&t);
-		printf("O filho 1 morreu em %s, e viveu %.0f anos\n", ctime(&t), difftime(fim1,inicio1));
+		printf("O filho 1 morreu em %s, e viveu %.0f anos\n\n", ctime(&t), difftime(fim1,inicio1));
 		exit(0);
 	}
 
@@ -106,7 +106,7 @@ int main(){
 			time(&fim4);
 			tempo=tempo+difftime(fim4,inicio4);
 			time(&t);
-			printf("O neto 2 morreu em %s, e viveu %.0f anos\n", ctime(&t), difftime(fim4,inicio4));
+			printf("O neto 2 morreu em %s, e viveu %.0f anos\n\n", ctime(&t), difftime(fim4,inicio4));
 			exit(0);
 		}
 		sleep(16);
@@ -114,7 +114,7 @@ int main(){
 		time(&fim2);
 		tempo=difftime(fim2,inicio);
 		time(&t);
-		printf("O filho 2 morreu em %s, e viveu %.0f anos\n", ctime(&t), difftime(fim2,inicio2));
+		printf("O filho 2 morreu em %s, e viveu %.0f anos\n\n", ctime(&t), difftime(fim2,inicio2));
 		exit(0);
 	}
 	
@@ -123,6 +123,6 @@ int main(){
 	time(&fim);
 	tempo=difftime(fim,inicio);
 	time(&t);
-	printf("O pai morreu em %s, e viveu %.0f anos\n", ctime(&t), tempo);
+	printf("O pai morreu em %s, e viveu %.0f anos\n\n", ctime(&t), tempo);
 	return 0;
 }
