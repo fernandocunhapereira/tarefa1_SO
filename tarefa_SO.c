@@ -74,14 +74,13 @@ int main(){
 	if(filho2==0){
 		//printf("O filho 2 nasceu...\n");
 		time_t inicio2,fim2;
-		double tempo2;
 		time(&inicio2);
 
 		sleep(14);
 
 		time(&fim2);
-		tempo2=difftime(fim2,inicio2)+16;
-		printf("O neto 2 nasceu as = %.2f\n", tempo2);
+		tempo=tempo+difftime(fim2,inicio2);
+		printf("O neto 2 nasceu as = %.2f\n", tempo);
 		
 		neto2=fork();
 		if(neto2<0){
@@ -90,21 +89,20 @@ int main(){
 		if(neto2==0){
 			//printf("O neto 2 nasceu...\n");
 			time_t inicio4,fim4;
-			double tempo4;
 			time(&inicio4);
 
 			sleep(18);
 
 			time(&fim4);
-			tempo4=difftime(fim4,inicio4);
-			printf("O neto 2 morreu as = %.2f, e viveu %.0f\n", tempo4+30, tempo4);
+			tempo=tempo+difftime(fim4,inicio4);
+			printf("O neto 2 morreu as = %.2f, e viveu %.0f anos\n", tempo, difftime(fim4,inicio4));
 			exit(0);
 		}
 		sleep(16);
 
 		time(&fim2);
-		tempo2=difftime(fim2,inicio2);
-		printf("O filho 2 morreu as = %.2f, e viveu %.0f anos\n", tempo2+16, tempo2);
+		tempo=difftime(fim2,inicio);
+		printf("O filho 2 morreu as = %.2f, e viveu %.0f anos\n", tempo,difftime(fim2,inicio2));
 		exit(0);
 	}
 	
