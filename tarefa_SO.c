@@ -4,18 +4,21 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <time.h>
-
-
+#include <string.h>
 
 int main(){
 
 	time_t t; //variavel para mostrar data/hora atual
 	time_t inicio,fim; //variaveis para contar tempo de vida do pai
-	time_t nasc1,nasc2,nasc3,nasc4; //variaveis que guardarao datas de nascimentos
+	time_t nasc,nasc1,nasc2,nasc3,nasc4; //variaveis que guardarao datas de nascimentos
 	int filho1,filho2,neto1,neto2; //variaveis para identificar processos
-	
+	char str[30],str1[30],str2[30],str3[30],str4[30];//variaveis que guardarao datas de nascimento em strings
+
 	time(&inicio);
 	time(&t);
+
+	time(&nasc);
+	strcpy(str,ctime(&nasc));
 	printf("O pai nasceu em %s\n", ctime(&t));
 	
 	sleep(14);
@@ -24,6 +27,7 @@ int main(){
 	printf("O filho 1 nasceu em %s\n", ctime(&t));
 
 	time(&nasc1);
+	strcpy(str1,ctime(&nasc1));
 	filho1=fork();
 	if(filho1<0){
 		printf("Erro ao criar processo!!!\n");
@@ -39,6 +43,7 @@ int main(){
 		printf("O neto 1 nasceu em %s\n", ctime(&t));
 
 		time(&nasc3);
+		strcpy(str3,ctime(&nasc3));
 		neto1=fork();
 		if(neto1<0){
 			printf("Erro ao criar processo!!!\n");
@@ -51,7 +56,7 @@ int main(){
 			
 			time(&fim3);
 			time(&t);
-			printf("O neto 1 morreu em %sO neto 1 viveu %.0f anos. Nascido em %s\n\n", ctime(&t), difftime(fim3,inicio3), ctime(&nasc3));
+			printf("O neto 1 morreu em %sO neto 1 viveu %.0f anos. Nascido em %s\n", ctime(&t), difftime(fim3,inicio3), str3);
 			exit(0);
 		}
 
@@ -59,7 +64,7 @@ int main(){
 
 		time(&fim1);
 		time(&t);
-		printf("O filho 1 morreu em %sO filho 1 viveu %.0f anos. Nascido em %s\n\n", ctime(&t), difftime(fim1,inicio1), ctime(&nasc1));
+		printf("O filho 1 morreu em %sO filho 1 viveu %.0f anos. Nascido em %s\n", ctime(&t), difftime(fim1,inicio1), str1);
 		exit(0);
 	}
 
@@ -69,6 +74,7 @@ int main(){
 	printf("O filho 2 nasceu em %s\n",ctime(&t));
 
 	time(&nasc2);
+	strcpy(str2,ctime(&nasc2));
 	filho2=fork();
 	if(filho2<0){
 		printf("Erro ao criar processo!!!\n");
@@ -84,6 +90,7 @@ int main(){
 		printf("O neto 2 nasceu em %s\n", ctime(&t));
 		
 		time(&nasc4);
+		strcpy(str4,ctime(&nasc4));
 		neto2=fork();
 		if(neto2<0){
 			printf("Erro ao criar processo!!!\n");
@@ -96,7 +103,7 @@ int main(){
 
 			time(&fim4);
 			time(&t);
-			printf("O neto 2 morreu em %sO neto 2 viveu %.0f anos. Nascido em %s\n\n", ctime(&t), difftime(fim4,inicio4), ctime(&nasc4));
+			printf("O neto 2 morreu em %sO neto 2 viveu %.0f anos. Nascido em %s\n", ctime(&t), difftime(fim4,inicio4), str4);
 			exit(0);
 		}
 
@@ -104,7 +111,7 @@ int main(){
 
 		time(&fim2);
 		time(&t);
-		printf("O filho 2 morreu em %sO filho 2 viveu %.0f anos. Nascido em %s\n\n", ctime(&t), difftime(fim2,inicio2), ctime(&nasc2));
+		printf("O filho 2 morreu em %sO filho 2 viveu %.0f anos. Nascido em %s\n", ctime(&t), difftime(fim2,inicio2), str2);
 		exit(0);
 	}
 	
@@ -113,6 +120,6 @@ int main(){
 	time(&fim);
 	time(&t);
 
-	printf("O pai morreu em %sO pai viveu %.0f anos. Nascido em %s\n\n", ctime(&t), difftime(fim,inicio), ctime(&inicio));
+	printf("O pai morreu em %sO pai viveu %.0f anos. Nascido em %s\n", ctime(&t), difftime(fim,inicio), str);
 	return 0;
 }
